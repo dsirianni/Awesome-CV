@@ -48,7 +48,9 @@
 %-------------------------------------------------------------------------------
 % Needed to make fixed length table
 \RequirePackage{array}
+\RequirePackage{makecell}
 % Needed to handle list environment
+%\RequirePackage{etaremune}
 \RequirePackage{enumitem}
 % Needed to handle text alignment
 \RequirePackage{ragged2e}
@@ -145,15 +147,22 @@
 \definecolor{awesome-nephritis}{HTML}{27AE60}
 \definecolor{awesome-concrete}{HTML}{95A5A6}
 \definecolor{awesome-darknight}{HTML}{131A28}
-\colorlet{awesome}{awesome-red}
+% GaTeCH colors
+\definecolor{GTGold}{RGB}{238, 178, 17}
+\definecolor{GTOldGold}{RGB}{179, 163, 105}
+\definecolor{GTGoldSixty}{RGB}{245, 211, 118}
+\definecolor{GTBlue}{RGB}{0, 37, 76}
+
+% Choose Awesome color for headers
+\colorlet{awesome}{GTBlue}
 
 % Boolean value to switch section color highlighting
 \newbool{acvSectionColorHighlight}
 \setbool{acvSectionColorHighlight}{true}
 
 % Awesome section color
-\def\@sectioncolor#1#2#3{%
-  \ifbool{acvSectionColorHighlight}{{\color{awesome}#1#2#3}}{#1#2#3}%
+\def\@sectioncolor{%
+  \ifbool{acvSectionColorHighlight}{{\color{awesome}#1}}{#1}%
 }
 
 
@@ -195,7 +204,8 @@
 \newcommand*{\headersocialstyle}[1]{{\fontsize{6.8pt}{1em}\headerfont\color{text} #1}}
 \newcommand*{\headerquotestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{8pt}{1em}\footerfont\scshape\color{lighttext} #1}}
-\newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
+
+\newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{awesome} #1}}
 \newcommand*{\subsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
 \newcommand*{\paragraphstyle}{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text}}
 
@@ -219,12 +229,38 @@
 \newcommand*{\honordatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
 \newcommand*{\honorlocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
 
+% For elements of service
+\newcommand*{\servicetitlestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
+\newcommand*{\servicepositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\servicedatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
+\newcommand*{\servicelocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
+
+% For elements of presentation
+\newcommand*{\prestitlestyle}[1]{\enspace{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
+\newcommand*{\prespositionstyle}[1]{\enspace{\fontsize{9pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\presdatestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
+\newcommand*{\preslocationstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
+
+% For elements of publications
+\newcommand*{\pubtitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\pubauthorstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
+\newcommand*{\pubjournalstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{graytext} #1}}
+\newcommand*{\pubjournalstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\itshape\color{graytext} #1}}
+\newcommand*{\pubvolumestyle}[1]{{\fontsize{9pt}{1em}\bodyfont\bfseries\color{graytext} #1}}
+\newcommand*{\pubtextstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\color{graytext} #1}}
+
 % For elements of skill
 \newcommand*{\skilltypestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 \newcommand*{\skillsetstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{text} #1}}
 
+% For elements of the personal, research, or teaching statement
+\newcommand*{\statementopenerstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\textcolor{text}{#1}}}
+\newcommand*{\statementsectionstyle}[1]{\section*{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{awesome}\sc #1}}}
+\newcommand*{\statementsubsectionstyle}[1]{\subsection{{\fontsize{11pt}{1em}\bodyfont\bfseries\color{black}\sc #1}}}
+\newcommand*{\statementtextstyle}{\fontsize{10pt}{1.4em}\bodyfontlight\upshape\color{graytext}}
+
 % For elements of the cover letter
-\newcommand*{\lettersectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
+\newcommand*{\lettersectionstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\color{awesome} {\sc #1}}}
 \newcommand*{\recipientaddressstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 \newcommand*{\recipienttitlestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 \newcommand*{\lettertitlestyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\bfseries\color{darktext} \underline{#1}}}
@@ -564,7 +600,7 @@
   \vspace{\acvSectionTopSkip}
   \sectionstyle{#1}
   \phantomsection
-  \color{gray}\vhrulefill{0.9pt}
+  \color{awesome}\vhrulefill{0.9pt}
 }
 
 % Define a subsection for CV
@@ -595,6 +631,17 @@
 }
 % Define an entry of cv information
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
+\newcommand*{\cvrefentry}[2]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth}}
+      \entrytitlestyle{#1}\\
+      \entrypositionstyle{#2}\\
+  \end{tabular*}%
+}
+% Define an entry of cv information
+% Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
 \newcommand*{\cventry}[5]{%
   \vspace{-2.0mm}
   \setlength\tabcolsep{0pt}
@@ -607,6 +654,72 @@
     \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
   \end{tabular*}%
 }
+
+\newcommand*{\cvteachingentry}[5]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 8cm} R{8cm}}
+    \ifempty{#2#3}
+      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
+      \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
+  \end{tabular*}%
+}
+
+% Define an environment for cventry
+\newenvironment{cvpresentations}{%
+  \vspace{\acvSectionContentTopSkip}
+  \begin{center}
+}{%
+  \end{center}
+}
+% Define an entry of cv information
+\newcommand*{\cvpresentry}[5]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.0cm}}
+    \ifempty{#2#3}
+    {\prestitlestyle{#1} & \presdatestyle{#4} \\}
+    {\prespositionstyle{#2} & \preslocationstyle{#3} \\
+    \prestitlestyle{#1} & \presdatestyle{#4} \\}
+    \multicolumn{2}{L{\textwidth}}{\descriptionstyle{#5}}
+  \end{tabular*}%
+}
+
+% Define an entry for publications in JCP format
+
+\newcommand*{\PaperEntry}[8]{%
+    \noindent \pubtitlestyle{#1}\\ \pubauthorstyle{#2}, \pubjournalstyle{#3} \pubvolumestyle{#4}, \pubtextstyle{#5 (#6) \href{#8}{(doi: #7)}}}
+
+
+\newcommand*{\InPressPaperEntry}[5]{%
+    \noindent \pubtitlestyle{#1}\\ \pubauthorstyle{#2}, \pubjournalstyle{#3} \pubtextstyle{\em (In press) \href{#5}{(doi: #4)}}}
+    % 1: Paper Title
+    % 2: Author List
+    % 3: Journal Abbreviation
+    % 4: doi
+    % 5: Link to doi
+
+\newcommand*{\SubmittedPaperEntry}[3]{%
+    \noindent \pubtitlestyle{#1}\\ \pubauthorstyle{#2}, \pubjournalstyle{#3} \pubtextstyle{\em (Submitted)}}
+    % 1: Paper Title
+    % 2: Author List
+    % 3: Journal Abbreviation
+
+\newcommand*{\InPrepPaperEntry}[2]{%
+    \noindent \pubtitlestyle{#1}\\ \pubauthorstyle{#2} \pubtextstyle{\em (In preparation)}}
+    % 1: Paper Title
+    % 2: Author list
+
+\newcommand*{\ArxivEntry}[3]{%
+    \noindent #1 ``\href{http://arxiv.org/abs/#3}{#2}", \textit{{cond-mat/}#3}.}
+
+\newcommand*{\ChemRxivEntry}[5]{%
+    \noindent \pubtitlestyle{#1}\\ \pubauthorstyle{#2}, \pubtextstyle{(#3). \href{#5}{(doi: #4)}}}
+
 
 % Define an environment for cvsubentry
 \newenvironment{cvsubentries}{%
@@ -632,14 +745,32 @@
   \end{tabular*}
 }
 
+% Define an environment for cvexperience
+\newenvironment{cvexperiences}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2mm}
+  \begin{center}
+    \setlength\tabcolsep{5pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{1.5cm} L{\textwidth - 5.0cm} R{2.5cm}}
+}{%
+    \end{tabular*}
+  \end{center}
+}
+% Define a line of cv information(honor, award or something else)
+% Usage: \cvhonor{<position>}{<title>}{<location>}{<date>}
+\newcommand*{\cvexperience}[4]{%
+  \honordatestyle{#4} & \honorpositionstyle{#1} \honortitlestyle{#2} & \honorlocationstyle{#3} \\
+}
+
 % Define an environment for cvhonor
 \newenvironment{cvhonors}{%
   \vspace{\acvSectionContentTopSkip}
   \vspace{-2mm}
   \begin{center}
-    \setlength\tabcolsep{0pt}
+    \setlength\tabcolsep{5pt}
     \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} C{1.5cm} L{\textwidth - 4.0cm} R{2.5cm}}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} R{1.5cm} L{\textwidth - 4.5cm} R{2.5cm}}
 }{%
     \end{tabular*}
   \end{center}
@@ -647,7 +778,7 @@
 % Define a line of cv information(honor, award or something else)
 % Usage: \cvhonor{<position>}{<title>}{<location>}{<date>}
 \newcommand*{\cvhonor}[4]{%
-  \honordatestyle{#4} & \honorpositionstyle{#1}, \honortitlestyle{#2} & \honorlocationstyle{#3} \\
+  \honordatestyle{#4} & \honorpositionstyle{#1} \honortitlestyle{#2} & \honorlocationstyle{#3} \\
 }
 
 % Define an environment for cvskill
@@ -661,6 +792,24 @@
 }{%
     \end{tabular*}
   \end{center}
+}
+
+% Define an environment for cvservice
+\newenvironment{cvservices}{%
+  \vspace{\acvSectionContentTopSkip}
+  \vspace{-2mm}
+  \begin{center}
+    \setlength\tabcolsep{5pt}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} R{1.5cm} L{\textwidth - 9cm} R{6.5cm}}
+}{%
+    \end{tabular*}
+  \end{center}
+}
+% Define a line of cv information(service, award or something else)
+% Usage: \cvservice{<position>}{<title>}{<location>}{<date>}
+\newcommand*{\cvservice}[4]{%
+  \servicedatestyle{#4} & \servicepositionstyle{#1} \servicetitlestyle{#2} & \servicelocationstyle{#3} \\
 }
 % Define a line of cv information(skill)
 % Usage: \cvskill{<type>}{<skillset>}
@@ -681,6 +830,29 @@
   \vspace{-4.0mm}
 }
 
+\newenvironment{cvdescription}{%
+  \vspace{-4.0mm}
+  \begin{justify}
+  \begin{description}[leftmargin=\parindent, labelindent=\parindent, nosep, noitemsep]
+    \setlength{\parskip}{0pt}
+}{%
+  \end{description}
+  \end{justify}
+  \vspace{-4.0mm}
+}
+
+% Define an environment for cvitems(for cventry)
+%\newenvironment{cvetaremune}{%
+%  \vspace{-4.0mm}
+%  \begin{justify}
+%  \begin{etaremune}[leftmargin=2ex, nosep, noitemsep]
+%    \setlength{\parskip}{0pt}
+%}{%
+%  \end{etaremune}
+%  \end{justify}
+%  \vspace{-4.0mm}
+%}
+
 
 %-------------------------------------------------------------------------------
 %                Commands for elements of Cover Letter
@@ -697,8 +869,51 @@
   \par\addvspace{2.5ex}
   \phantomsection{}
   \lettersectionstyle{#1}
-  \color{gray}\vhrulefill{0.9pt}
+  \color{gray}{\color{awesome}\vhrulefill{0.9pt}}
   \par\nobreak\addvspace{0.4ex}
+}
+
+% Define statement header
+\newcommand*{\makestatementheader}[1]{%
+  \fancyhead{}
+  \fancyhead[LH]{\headerstyle{#1}}
+  \fancyhead[RH]{\headerstyle{Dominic A. Sirianni}}
+}
+
+% Define an environment for cvletter
+\newenvironment{cvstatement}{%
+  \lettertextstyle
+}{%
+}
+
+\newcommand{\statementopener}[1]{%
+  \begin{minipage}{0.5\textwidth}
+  \begin{flushleft}
+       \section*{\statementopenerstyle{#1}}
+  \end{flushleft}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.5\textwidth}
+  \begin{flushright}
+       \textbf{\large Dominic A. Sirianni}\\[1.5cm]
+  \end{flushright}
+  \end{minipage}
+}
+
+\newcommand{\statementsection}[1]{%
+  %\par\addvspace{2.5ex}
+  \refstepcounter{section}
+  \statementsectionstyle{#1\color{awesome}\vhrulefill{0.9pt}}
+  \color{gray}
+  %\par\nobreak\addvspace{0.4ex}
+}
+
+\newcommand{\statementsubsection}[1]{%
+  %\par\addvspace{2.5ex}
+  %\refstepcounter{subsection}
+  \statementsubsectionstyle{#1}
+  \color{gray}
+  %\par\nobreak\addvspace{0.4ex}
 }
 
 % Define a title of the cover letter
